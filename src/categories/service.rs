@@ -1,5 +1,5 @@
 use crate::categories::{
-    model::{Category, CreateCategory},
+    model::{CreateCategory, Product},
     repository::CategoryRepository,
 };
 
@@ -14,7 +14,7 @@ impl CategoryService {
         }
     }
 
-    pub async fn get_all_users(&self) -> Result<Vec<Category>, sqlx::Error> {
+    pub async fn get_all_users(&self) -> Result<Vec<Product>, sqlx::Error> {
         let categories = self.category_repository.find_all().await?;
         Ok(categories)
     }

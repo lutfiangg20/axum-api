@@ -1,6 +1,6 @@
 use sqlx::{Pool, Postgres};
 
-use crate::categories::model::{Category, CreateCategory};
+use crate::categories::model::{CreateCategory, Product};
 
 pub struct CategoryRepository {
     pub pool: Pool<Postgres>,
@@ -11,8 +11,8 @@ impl CategoryRepository {
         Self { pool }
     }
 
-    pub async fn find_all(&self) -> Result<Vec<Category>, sqlx::Error> {
-        let categories = sqlx::query_as!(Category, "select * from categories")
+    pub async fn find_all(&self) -> Result<Vec<Product>, sqlx::Error> {
+        let categories = sqlx::query_as!(Product, "select * from categories")
             .fetch_all(&self.pool)
             .await?;
         Ok(categories)
